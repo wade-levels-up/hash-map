@@ -1,5 +1,6 @@
-import HashMap from "./hash.js"
+import { HashMap, Hash } from "./hash.js"
+import LinkedList from "./linkedlist.js"
 
-let hash1 = new HashMap
+let hashMap1 = new HashMap;
 
-console.log(hash1.hash("Wade"));
+console.log(hashMap1);

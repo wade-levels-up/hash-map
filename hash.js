@@ -1,6 +1,17 @@
-export default class HashMap {
-    constructor() {
+import LinkedList from "./linkedlist.js";
 
+export class HashMap {
+    constructor(loadFactor = 0.75) {
+        this.loadFactor = loadFactor;
+        this.buckets = this.populateBuckets(16);
+    }
+
+    populateBuckets(value) {
+        let array = [];
+        for (let i = 0; i < value; i++) {
+            this.buckets = array.push(new LinkedList);
+        }
+        return array;
     }
 
     hash(key) {
@@ -38,4 +49,12 @@ export default class HashMap {
     values() {}
 
     entries() {}
+}
+
+export class Hash {
+    constructor(key = null, value = null, next = null) {
+        this.key = key;
+        this.value = value;
+        this.next = next;
+    }
 }
