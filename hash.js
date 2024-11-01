@@ -28,9 +28,12 @@ export class HashMap {
     set(key, value) {
         let bucketIndex = this.hash(key);
         if (this.buckets[bucketIndex].contains(key)) {
+            let idToRm = this.buckets[bucketIndex].find(key);
             console.log(`Bucket already contains ${key}`);
             console.log(`Overwriting ${key} with new value: ${key}: ${value}`);
-            
+            this.buckets[bucketIndex].removeAt(idToRm);
+            this.buckets[bucketIndex].insertAt(key, value, idToRm);
+            console.log(`bucket now contains ${this.buckets[bucketIndex]}`);
         } else {
             this.buckets[bucketIndex].append(key, value);
         }

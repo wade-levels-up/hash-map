@@ -129,11 +129,11 @@ export default class LinkedList {
       return string;
     };
   
-    insertAt = function (value, index) {
+    insertAt = function (key, value, index) {
       let newNode = new Hash(key, value);
       let position = 0;
       let node = this.head;
-      while (node.next) {
+      while (node) {
         if (position === index - 1) {
           newNode.next = node.next;
           node.next = newNode;

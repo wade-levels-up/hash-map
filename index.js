@@ -21,6 +21,7 @@ hashMap1.set('Wadr', '67 Nload');
 hashMap1.set('Wads', '67 Nload');
 hashMap1.set('Wadt', '67 Nload');
 hashMap1.set('Wadu', '67 Nload');
+hashMap1.set('Wadu', '67 Nload');
 
 
 console.log(hashMap1.buckets[11].find('Wadu'));
