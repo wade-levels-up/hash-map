@@ -6,11 +6,16 @@ export default class LinkedList {
     }
   
     append = function (key, value) {
-      let node = this.head;
-      while (node.next) {
-        node = node.next;
+      let newNode = new Hash(key, value);
+      if (this.head === null) {
+        this.head = newNode;
+      } else {
+        let node = this.head;
+        while (node.next) {
+          node = node.next;
+        }
+        node.next = newNode;
       }
-      node.next = new Hash(key, value);
     };
   
     prepend = function (key, value) {

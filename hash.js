@@ -16,16 +16,20 @@ export class HashMap {
 
     hash(key) {
         let hashCode = 0;
-           
+        console.log(`Hashing: ${key}`) // REMOVE
         const primeNumber = 31;
         for (let i = 0; i < key.length; i++) {
-          hashCode = primeNumber * hashCode + key.charCodeAt(i);
+          hashCode = (primeNumber * hashCode + key.charCodeAt(i)) % this.buckets.length;
         }
-     
+        console.log(`Returning ${key}, hashed to ${hashCode}`);
         return hashCode;
     } 
 
-    set(key, value) {}
+    set(key, value) {
+        let bucketIndex = this.hash(key);
+        this.buckets[bucketIndex].append(key, value);
+        console.log(`Placed ${key}: ${value} into ${this.buckets[bucketIndex].toString()}`)
+    }
 
     get(key) {}
 
