@@ -65,38 +65,64 @@ export default class LinkedList {
       }
       previousNode.next = null;
     };
-  
+
     contains = function (value) {
       let isTrue = false;
       let node = this.head;
       while (node) {
-        if (node.value === value) {
-          isTrue = true;
+        for (let property in node) {
+          if (node.hasOwnProperty(value)) {
+            isTrue = true;
+            break; // Exit the loop early if the value is found
+          }
         }
+        if (isTrue) break; // Exit the outer loop early if the value is found
         node = node.next;
       }
       return isTrue;
     };
   
+    // find = function (value) {
+    //   let position = 0;
+    //   let node = this.head;
+    //   while (node) {
+    //     if (node.value !== value) {
+    //       position += 1;
+    //       node = node.next;
+    //     } else {
+    //       return position;
+    //     }
+    //   }
+    //   return null;
+    // };
+
     find = function (value) {
       let position = 0;
       let node = this.head;
-      while (node) {
-        if (node.value !== value) {
+      if (this.head === null) {
+        return null;
+      } else {
+        while(node) {
+          for (let property in node) {
+            if (node.hasOwnProperty(value)) {
+              return position;
+            }
+          }
           position += 1;
           node = node.next;
-        } else {
-          return position;
         }
       }
-      return null;
-    };
+    }
   
     toString = function () {
       let node = this.head;
       let string = "";
       while (node) {
-        string += `( ${node.value} ) -> `;
+        for (let key in node) {
+          if (key !== 'next') {
+            string += `( ${key}: ${node[key]} ) -> `;
+          }
+        }
         node = node.next;
       }
       string += `null`;

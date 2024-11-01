@@ -27,8 +27,13 @@ export class HashMap {
 
     set(key, value) {
         let bucketIndex = this.hash(key);
-        this.buckets[bucketIndex].append(key, value);
-        console.log(`Placed ${key}: ${value} into ${this.buckets[bucketIndex].toString()}`)
+        if (this.buckets[bucketIndex].contains(key)) {
+            console.log(`Bucket already contains ${key}`);
+            console.log(`Overwriting ${key} with new value: ${key}: ${value}`);
+            
+        } else {
+            this.buckets[bucketIndex].append(key, value);
+        }
     }
 
     get(key) {}
@@ -55,10 +60,17 @@ export class HashMap {
     entries() {}
 }
 
+// export class Hash {
+//     constructor(key = null, value = null, next = null) {
+//         this.key = key;
+//         this.value = value;
+//         this.next = next;
+//     }
+// }
+
 export class Hash {
     constructor(key = null, value = null, next = null) {
-        this.key = key;
-        this.value = value;
+        this[key] = value;
         this.next = next;
     }
 }
