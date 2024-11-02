@@ -7,7 +7,8 @@ hashMap1.set('Wade', '33 Male'); // Index 11
 hashMap1.set('Wadu', '33 LOL'); // Index 11
 hashMap1.set('Courtney', '26 Female');
 
-hashMap1.clear();
+hashMap1.remove('Wadu');
+console.log(hashMap1.keys());
 
 console.log(`--- Hashmap contains ${hashMap1.length()} entries`);
 

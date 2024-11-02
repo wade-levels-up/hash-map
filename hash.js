@@ -87,7 +87,19 @@ export class HashMap {
     }
 
     keys() {
-        // returns an array containing all the keys in the hash map
+        let keys = [];
+        let keysSorted = [];
+        for (let bucket of this.buckets) {
+            if (bucket.head) {
+                keys.push(bucket.toArray());
+            }
+        }
+        for (let arr of keys) {
+            for (let element of arr) {
+                keysSorted.push(element);
+            }
+        }
+        return keysSorted;
     }
 
     values() {}

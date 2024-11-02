@@ -105,19 +105,19 @@ export default class LinkedList {
       }
     }
   
-    toString = function () {
+    toArray = function () {
       let node = this.head;
-      let string = "";
+      let array = [];
       while (node) {
         for (let key in node) {
           if (key !== 'next') {
-            string += `( ${key}: ${node[key]} ) -> `;
+            array.push(`${key}`);
           }
         }
         node = node.next;
       }
-      string += `null`;
-      return string;
+      // string += `null`;
+      return array;
     };
   
     insertAt = function (key, value, index) {
