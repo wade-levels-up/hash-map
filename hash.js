@@ -25,6 +25,9 @@ export class HashMap {
         return hashCode;
     } 
 
+    // Remember to grow bucket size when it needs to when it reaches
+    // it's load factor, this will happen in set function
+
     set(key, value) {
         let bucketIndex = this.hash(key);
         if (this.buckets[bucketIndex].contains(key)) {
@@ -39,7 +42,16 @@ export class HashMap {
         }
     }
 
-    get(key) {}
+    get(key) {
+        console.log(`Finding value stored in key: ${key}`);
+        for (let bucket of this.buckets) {
+            if (bucket.contains(key)) {
+                let index = bucket.find(key);
+                return bucket.at(index, key);
+            }
+        }
+        return null;
+    }
 
     has(key) {}
 

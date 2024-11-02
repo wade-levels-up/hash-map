@@ -46,14 +46,19 @@ export default class LinkedList {
       return node.data;
     };
   
-    at = function (index) {
+    at = function (index, key) {
       let position = 0;
       let node = this.head;
-      while (node && position < index) {
+      while (node && position <= index) {
+        for (let property in node) {
+          if (node.hasOwnProperty(key)) {
+            return node[key];
+          }
+        }
         position += 1;
         node = node.next;
       }
-      return node.value;
+      return null;
     };
   
     pop = function () {
@@ -81,20 +86,6 @@ export default class LinkedList {
       }
       return isTrue;
     };
-  
-    // find = function (value) {
-    //   let position = 0;
-    //   let node = this.head;
-    //   while (node) {
-    //     if (node.value !== value) {
-    //       position += 1;
-    //       node = node.next;
-    //     } else {
-    //       return position;
-    //     }
-    //   }
-    //   return null;
-    // };
 
     find = function (value) {
       let position = 0;
