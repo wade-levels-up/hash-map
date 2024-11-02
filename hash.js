@@ -44,16 +44,24 @@ export class HashMap {
 
     get(key) {
         console.log(`Finding value stored in key: ${key}`);
-        for (let bucket of this.buckets) {
-            if (bucket.contains(key)) {
-                let index = bucket.find(key);
-                return bucket.at(index, key);
-            }
+        let hashIndex = this.hash(key);
+        let bucket = this.buckets[hashIndex];
+        if (bucket.contains(key)) {
+            let nodeIndex = bucket.find(key);
+            return bucket.at(nodeIndex, key);
         }
         return null;
     }
 
-    has(key) {}
+    has(key) {
+        console.log(`Finding if ${key} is in the hash map`);
+        let hashIndex = this.hash(key);
+        let bucket = this.buckets[hashIndex];
+        if (bucket.contains(key)) {
+            return true;
+        }
+        return false;
+    }
 
     remove(key) {
     }

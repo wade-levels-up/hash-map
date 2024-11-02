@@ -20,6 +20,8 @@ hashMap1.set('Wadr', '33 Male');
 hashMap1.set('Wads', '33 Male');
 hashMap1.set('Wadt', '33 Male');
 hashMap1.set('Wadu', '33 LOL'); // Index 11
+hashMap1.set('Courtney', '26 Female');
 
 
 console.log(hashMap1.get('Wadu'));
+console.log(hashMap1.has('Courtney'));
