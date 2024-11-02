@@ -139,7 +139,7 @@ export default class LinkedList {
     removeAt = function (index) {
       let position = 0;
       let node = this.head;
-      while (node.next) {
+      while (node) {
         if (position === index && position === 0) {
           this.head = node.next;
           break;
