@@ -116,7 +116,20 @@ export default class LinkedList {
         }
         node = node.next;
       }
-      // string += `null`;
+      return array;
+    };
+
+    toValueArray = function () {
+      let node = this.head;
+      let array = [];
+      while (node) {
+        for (let key in node) {
+          if (key !== 'next') {
+            array.push(node[key]);
+          }
+        }
+        node = node.next;
+      }
       return array;
     };
   

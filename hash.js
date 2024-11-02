@@ -102,7 +102,21 @@ export class HashMap {
         return keysSorted;
     }
 
-    values() {}
+    values() {
+        let keys = [];
+        let keysSorted = [];
+        for (let bucket of this.buckets) {
+            if (bucket.head) {
+                keys.push(bucket.toValueArray());
+            }
+        }
+        for (let arr of keys) {
+            for (let element of arr) {
+                keysSorted.push(element);
+            }
+        }
+        return keysSorted;
+    }
 
     entries() {}
 }

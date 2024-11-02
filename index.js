@@ -9,6 +9,7 @@ hashMap1.set('Courtney', '26 Female');
 
 hashMap1.remove('Wadu');
 console.log(hashMap1.keys());
+console.log(hashMap1.values());
 
 console.log(`--- Hashmap contains ${hashMap1.length()} entries`);
 
