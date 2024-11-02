@@ -83,7 +83,7 @@ export class HashMap {
     }
 
     clear() {
-        // removes all entries within the hash map
+        this.buckets = this.populateBuckets(16);
     }
 
     keys() {
