@@ -118,16 +118,22 @@ export class HashMap {
         return keysSorted;
     }
 
-    entries() {}
+    entries() {
+        let keys = [];
+        let keysSorted = [];
+        for (let bucket of this.buckets) {
+            if (bucket.head) {
+                keys.push(bucket.toKeyValueArray());
+            }
+        }
+        for (let arr of keys) {
+            for (let element of arr) {
+                keysSorted.push(element);
+            }
+        }
+        return keysSorted;
+    }
 }
-
-// export class Hash {
-//     constructor(key = null, value = null, next = null) {
-//         this.key = key;
-//         this.value = value;
-//         this.next = next;
-//     }
-// }
 
 export class Hash {
     constructor(key = null, value = null, next = null) {

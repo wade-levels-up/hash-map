@@ -132,6 +132,20 @@ export default class LinkedList {
       }
       return array;
     };
+
+    toKeyValueArray = function () {
+      let node = this.head;
+      let array = [];
+      while (node) {
+        for (let key in node) {
+          if (key !== 'next') {
+            array.push([key, node[key]]);
+          }
+        }
+        node = node.next;
+      }
+      return array;
+    };
   
     insertAt = function (key, value, index) {
       let newNode = new Hash(key, value);
