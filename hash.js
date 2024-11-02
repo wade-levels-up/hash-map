@@ -64,6 +64,15 @@ export class HashMap {
     }
 
     remove(key) {
+        console.log(`Deleting entry stored in key: ${key}`);
+        let hashIndex = this.hash(key);
+        let bucket = this.buckets[hashIndex];
+        if (bucket.contains(key)) {
+            let nodeIndex = bucket.find(key);
+            bucket.removeAt(nodeIndex);
+            return true;
+        }
+        return false;
     }
 
     length() {

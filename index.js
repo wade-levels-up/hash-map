@@ -24,4 +24,9 @@ hashMap1.set('Courtney', '26 Female');
 
 
 console.log(hashMap1.get('Wadu'));
+console.log(hashMap1.has('Wadu'));
+hashMap1.remove('Wade');
 console.log(hashMap1.has('Courtney'));
+console.log(hashMap1.has('Wade'));
+console.log(hashMap1.has('Wadu'));
+
