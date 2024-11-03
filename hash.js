@@ -6,6 +6,18 @@ export class HashMap {
     this.buckets = this.populateBuckets(16);
   }
 
+  growCapacity() {
+    let currentData = this.entries();
+    let newList = [];
+    for (let i = 0; i < this.buckets.length + 16; i++) {
+      newList.push(new LinkedList());
+    }
+    this.buckets = newList;
+    for (let entry of currentData) {
+      this.reSet(entry[0], entry[1]);
+    }
+  }
+
   populateBuckets(value) {
     let array = [];
     for (let i = 0; i < value; i++) {
@@ -24,21 +36,33 @@ export class HashMap {
     return hashCode;
   }
 
-  // Remember to grow bucket size when it needs to when it reaches
-  // it's load factor, this will happen in set function
-
   set(key, value) {
+    let currentEntriesTotal = this.length();
+    if (currentEntriesTotal + 1 > this.buckets.length * this.loadFactor) {
+      this.growCapacity();
+    }
     let bucketIndex = this.hash(key);
     if (bucketIndex < 0 || bucketIndex >= this.buckets.length) {
       throw new Error("Trying to access index out of bound");
     }
     if (this.buckets[bucketIndex].contains(key)) {
       let idToRm = this.buckets[bucketIndex].find(key);
-      console.log(`Bucket already contains ${key}`);
-      console.log(`Overwriting ${key} with new value: ${key}: ${value}`);
       this.buckets[bucketIndex].removeAt(idToRm);
       this.buckets[bucketIndex].insertAt(key, value, idToRm);
-      console.log(`bucket now contains ${this.buckets[bucketIndex]}`);
+    } else {
+      this.buckets[bucketIndex].append(key, value);
+    }
+  }
+
+  reSet(key, value) {
+    let bucketIndex = this.hash(key);
+    if (bucketIndex < 0 || bucketIndex >= this.buckets.length) {
+      throw new Error("Trying to access index out of bound");
+    }
+    if (this.buckets[bucketIndex].contains(key)) {
+      let idToRm = this.buckets[bucketIndex].find(key);
+      this.buckets[bucketIndex].removeAt(idToRm);
+      this.buckets[bucketIndex].insertAt(key, value, idToRm);
     } else {
       this.buckets[bucketIndex].append(key, value);
     }
